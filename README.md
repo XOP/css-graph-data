@@ -1,2 +1,1 @@
-# css-graph-data
-CSS historical data visualization
+# CSS data visualization
