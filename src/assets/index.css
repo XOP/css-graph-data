@@ -1,0 +1,17 @@
+html {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+
+  font-family: system-ui, sans-serif;
+  background-color: #eee;
+}
+
+body {
+  display: flex;
+  flex: 1 0 100%;
+  flex-direction: column;
+
+  min-height: 100%;
+  margin: 0;
+}

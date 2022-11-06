@@ -1,0 +1,26 @@
+---
+export interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<footer class={`footer ${className}`}>
+  <div class="content">
+    CSS analysis @ <a href="https://github.com/XOP" title="XOP Github">XOP</a> 2022
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding: 1rem;
+    border-top: 1px solid #fff;
+
+    background: transparent;
+  }
+
+  .content {
+    text-align: center;
+  }
+</style>
