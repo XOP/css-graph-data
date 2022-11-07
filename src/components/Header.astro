@@ -9,7 +9,12 @@ const { class: className, title } = Astro.props;
 
 <header class={`header ${className}`}>
   <div class="start">
-    <div class="menu"></div>
+    <div class="menu">
+      <nav>
+        <a href="/">About</a>
+        <a href="/graphs">Graphs</a>
+      </nav>
+    </div>
   </div>
   <div class="content">
     <h1 class="title">{title}</h1>

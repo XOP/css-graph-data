@@ -26,17 +26,18 @@ const { title } = Astro.props;
       <slot />
     </main>
     <Footer class="footer" />
-    <style>
-      .header,
-      .footer {
-        flex: 0 1 auto;
-      }
-
-      .main {
-        flex: 1 1 auto;
-
-        padding: 1rem 2rem;
-      }
-    </style>
   </body>
 </html>
+
+<style>
+  .header,
+  .footer {
+    flex: 0 1 auto;
+  }
+
+  .main {
+    flex: 1 1 auto;
+
+    padding: 1rem 2rem;
+  }
+</style>
