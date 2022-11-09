@@ -6,9 +6,13 @@
   --cgd-color-primary: #b3ed3f;
   --cgd-color-primary-rgb: 179, 237, 63;
   --cgd-color-primary-contrast: var(--cgd-color-light-contrast);
-  --cgd-color-primary-contrast-rgb: 0, 0, 0;
+  --cgd-color-primary-contrast-rgb: 11, 11, 11;
   --cgd-color-primary-shade: #a2d143;
   --cgd-color-primary-tint: #b9ff2d;
+
+  --cgd-color-text-strong: var(--cgd-color-dark-contrast);
+  --cgd-color-text-medium: #ced1c6;
+  --cgd-color-text-light: #dddfd7;
 
   --cgd-color-step-50: #1e1e1e;
   --cgd-color-step-100: #2a2a2a;
