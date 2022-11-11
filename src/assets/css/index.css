@@ -1,11 +1,21 @@
+@font-face {
+  font-family: 'Mona Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 450;
+  src: url('../fonts/Mona-Sans.woff2') format('woff2');
+}
+
 html {
   display: flex;
   flex-direction: column;
   min-height: 100%;
 
   background-color: var(--cgd-color-gamma-050);
-  font-family: system-ui, sans-serif;
+  font-family: 'Mona Sans', system-ui, sans-serif;
+  line-height: 1.5;
   color: var(--cgd-color-text-medium);
+  letter-spacing: 0.02ex;
 }
 
 body {

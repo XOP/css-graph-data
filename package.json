@@ -10,6 +10,12 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^1.6.0"
+    "@observablehq/plot": "^0.6.0",
+    "@radix-ui/react-slider": "^1.1.0",
+    "@radix-ui/react-tabs": "^1.0.1",
+    "@rehooks/local-storage": "^2.4.4",
+    "astro": "^1.6.0",
+    "clsx": "^1.2.1",
+    "match-sorter": "^6.3.1"
   }
 }
