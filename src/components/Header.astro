@@ -29,9 +29,9 @@ const { class: className, title } = Astro.props;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    gap: 1rem;
+    gap: var(--cgd-space-100);
 
-    padding: 1rem;
+    padding: var(--cgd-space-100) var(--cgd-side-gap);
 
     background: transparent;
   }
@@ -48,7 +48,7 @@ const { class: className, title } = Astro.props;
   .title {
     margin: 0;
 
-    font-size: 1.25rem;
+    font-size: var(--cgd-font-size-l);
     text-align: center;
   }
 </style>

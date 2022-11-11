@@ -21,19 +21,21 @@ const { title } = Astro.props;
 
 <style>
   .content {
-    padding: 1rem;
+    padding: var(--cgd-space-100);
 
-    font-size: 1rem;
+    font-size: var(--cgd-font-size-n);
+    border: 1px solid var(--cgd-color-primary-shade);
+    border-radius: var(--cgd-radius-regular);
   }
 
   .head {
-    margin-bottom: 1rem;
+    margin-bottom: var(--cgd-space-100);
   }
 
   .title {
     margin: 0;
 
-    font-size: 1.45rem;
+    font-size: var(--cgd-font-size-xl);
     font-weight: bold;
   }
 </style>
