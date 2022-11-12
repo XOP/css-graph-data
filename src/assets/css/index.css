@@ -13,7 +13,7 @@ html {
 
   background-color: var(--cgd-color-gamma-050);
   font-family: 'Mona Sans', system-ui, sans-serif;
-  line-height: 1.5;
+  line-height: 1.6;
   color: var(--cgd-color-text-medium);
   letter-spacing: 0.02ex;
 }

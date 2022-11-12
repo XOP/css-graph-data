@@ -68,6 +68,7 @@
   --cgd-radius-regular: 0.5rem;
   --cgd-radius-big: 1rem;
   --cgd-radius-round: 50%;
+  --cgd-radius-pill: 9999px;
 
   --cgd-shadow-h: 30;
   --cgd-shadow-s: 5%;
