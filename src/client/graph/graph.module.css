@@ -1,0 +1,12 @@
+.section {
+  padding: var(--cgd-space-100);
+
+  border: 1px solid var(--cgd-color-primary-shade);
+  border-radius: var(--cgd-radius-regular);
+}
+
+.section > h1 {
+  margin: 0;
+
+  font-size: var(--cgd-font-size-l);
+}
