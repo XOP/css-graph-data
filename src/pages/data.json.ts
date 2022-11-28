@@ -6,6 +6,20 @@ const dataFiles = fs
   .readdirSync(dataRootPath)
   .filter((f) => f.includes('.json'));
 
+export type CssDataType = {
+  version: string;
+  timestamp: string | Date;
+  size: string | number;
+  sizeGzip: string | number;
+  selectorsAvg: string | number;
+  selectorsSum: string | number;
+  cohesion: string | number;
+  declarations: string | number;
+  lines: string | number;
+  rules: string | number;
+  colors: string[];
+};
+
 const generateData = async function generateData(data = []) {
   for (const f of dataFiles) {
     const split = f.split('--');
@@ -14,10 +28,10 @@ const generateData = async function generateData(data = []) {
 
     const dataPath = path.join(dataRootPath, f);
 
-    const bin = await fsp.readFile(dataPath).catch((e) => console.error(e));
+    const bin: Buffer = await fsp.readFile(dataPath);
     const d = JSON.parse(bin.toString());
 
-    const dataOut = {
+    const dataOut: CssDataType = {
       version: 'v' + version,
       timestamp,
       size:
