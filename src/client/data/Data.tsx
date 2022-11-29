@@ -1,5 +1,8 @@
-import { matchSorter } from 'match-sorter';
+import { createContext, Resource, useContext } from 'solid-js';
+
 import { createSignal, createResource } from 'solid-js';
+import { matchSorter } from 'match-sorter';
+
 import { CssDataType } from '../../pages/data.json';
 
 const fetchData = async function () {
@@ -22,7 +25,13 @@ const fetchData = async function () {
   return dataSet.slice(0, 1);
 };
 
-const [_, setData] = createSignal([]);
-const [data] = createResource(_, fetchData);
+const DataContext = createContext<Resource<CssDataType[]>>(null);
 
-export default data;
+export const DataProvider = (props) => {
+  const [_, setData] = createSignal([]);
+  const [data] = createResource(_, fetchData);
+
+  return <DataContext.Provider value={data} children={props.children} />;
+};
+
+export const useData = () => useContext(DataContext)

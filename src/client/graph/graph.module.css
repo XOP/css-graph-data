@@ -10,3 +10,11 @@
 
   font-size: var(--cgd-font-size-l);
 }
+
+.controls {
+  padding: var(--cgd-space-050);
+}
+
+.plot {
+  margin-top: var(--cgd-space-100);
+}

@@ -1,17 +1,19 @@
-import data from '../data/data';
+import { ParentProps } from 'solid-js';
+import type { JSX } from 'solid-js';
 
 import styles from './graph.module.css';
+
 interface GraphType {
-  title: string;
+  title: string | JSX.Element;
+  controls?: JSX.Element;
 }
 
-const Graph = ({ title }: GraphType) => {
+const Graph = ({ title, controls, children }: GraphType & ParentProps) => {
   return (
-    <section className={styles.section}>
+    <section class={styles.section}>
       <h1>{title}</h1>
-      <code>
-        <pre>{JSON.stringify(data(), null, 2)}</pre>
-      </code>
+      {controls && <aside class={styles.controls}>{controls}</aside>}
+      <div class={styles.plot}>{children}</div>
     </section>
   );
 };
