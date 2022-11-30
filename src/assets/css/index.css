@@ -16,6 +16,7 @@ html {
   line-height: 1.6;
   color: var(--cgd-color-text-medium);
   letter-spacing: 0.02ex;
+  font-size: 15px;
 }
 
 body {

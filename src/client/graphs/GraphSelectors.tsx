@@ -5,14 +5,18 @@ import * as Plot from '@observablehq/plot';
 import { plotOptions } from './plot-options';
 import { Segment, useData } from '..';
 
-import { COLORS, DIM_SIZE } from '../../utils/globals';
+import {
+  COLORS,
+  DIM_SELECTORS_AVG,
+  DIM_SELECTORS_SUM,
+} from '../../utils/globals';
 
 const Graph = () => {
   const data = useData();
 
   let plotRef;
 
-  const [plotSizeY, setPlotSizeY] = createSignal(DIM_SIZE);
+  const [plotSelectorsY, setPlotSelectorsY] = createSignal(DIM_SELECTORS_AVG);
 
   createEffect(() => {
     if (data.loading) return;
@@ -20,8 +24,8 @@ const Graph = () => {
     const marks = [
       Plot.dot(data(), {
         x: 'timestamp',
-        y: plotSizeY(),
-        fill: plotSizeY(),
+        y: plotSelectorsY(),
+        fill: plotSelectorsY(),
         title: 'version',
         r: 8,
         stroke: COLORS.light,
@@ -29,7 +33,7 @@ const Graph = () => {
       Plot.ruleY([0]),
       Plot.linearRegressionY(data(), {
         x: 'timestamp',
-        y: plotSizeY(),
+        y: plotSelectorsY(),
         stroke: COLORS.accent,
       }),
     ];
@@ -37,8 +41,8 @@ const Graph = () => {
     const plot = Plot.plot({
       ...plotOptions,
       y: {
-        label: 'Size, kb',
-        domain: [0, plotSizeY() === DIM_SIZE ? 350 : 50],
+        label: 'Selectors',
+        domain: [1, plotSelectorsY() === DIM_SELECTORS_SUM ? 5000 : 3],
       },
       marks,
     });
@@ -54,12 +58,12 @@ const Graph = () => {
   return <div ref={plotRef}></div>;
 };
 
-const GraphSize = () => {
+const GraphSelectors = () => {
   return (
-    <Segment title="CSS Size">
+    <Segment title="Selectors data">
       <Graph />
     </Segment>
   );
 };
 
-export default GraphSize;
+export default GraphSelectors;

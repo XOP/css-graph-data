@@ -5,14 +5,15 @@ import * as Plot from '@observablehq/plot';
 import { plotOptions } from './plot-options';
 import { Segment, useData } from '..';
 
-import { COLORS, DIM_SIZE } from '../../utils/globals';
+import { COLORS, DIM_DECL_AMOUNT } from '../../utils/globals';
 
 const Graph = () => {
   const data = useData();
 
   let plotRef;
 
-  const [plotSizeY, setPlotSizeY] = createSignal(DIM_SIZE);
+  const [plotDeclarationsY, setPlotDeclarationsY] =
+    createSignal(DIM_DECL_AMOUNT);
 
   createEffect(() => {
     if (data.loading) return;
@@ -20,8 +21,8 @@ const Graph = () => {
     const marks = [
       Plot.dot(data(), {
         x: 'timestamp',
-        y: plotSizeY(),
-        fill: plotSizeY(),
+        y: plotDeclarationsY(),
+        fill: plotDeclarationsY(),
         title: 'version',
         r: 8,
         stroke: COLORS.light,
@@ -29,7 +30,7 @@ const Graph = () => {
       Plot.ruleY([0]),
       Plot.linearRegressionY(data(), {
         x: 'timestamp',
-        y: plotSizeY(),
+        y: plotDeclarationsY(),
         stroke: COLORS.accent,
       }),
     ];
@@ -37,8 +38,10 @@ const Graph = () => {
     const plot = Plot.plot({
       ...plotOptions,
       y: {
-        label: 'Size, kb',
-        domain: [0, plotSizeY() === DIM_SIZE ? 350 : 50],
+        label:
+          plotDeclarationsY() === DIM_DECL_AMOUNT ? 'Declarations' : 'Cohesion',
+        domain:
+          plotDeclarationsY() === DIM_DECL_AMOUNT ? [3000, 9000] : [2.5, 5],
       },
       marks,
     });
@@ -54,12 +57,12 @@ const Graph = () => {
   return <div ref={plotRef}></div>;
 };
 
-const GraphSize = () => {
+const GraphDeclarations = () => {
   return (
-    <Segment title="CSS Size">
+    <Segment title="Declarations data">
       <Graph />
     </Segment>
   );
 };
 
-export default GraphSize;
+export default GraphDeclarations;

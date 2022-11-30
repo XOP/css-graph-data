@@ -5,6 +5,10 @@
   border-radius: var(--cgd-radius-regular);
 }
 
+.section + .section {
+  margin-top: var(--cgd-space-100);
+}
+
 .section > h1 {
   margin: 0;
 
