@@ -22,7 +22,7 @@ const fetchData = async function () {
     };
   });
 
-  return dataSet.slice(0, 1);
+  return dataSet.slice(0, 10);
 };
 
 const DataContext = createContext<Resource<CssDataType[]>>(null);

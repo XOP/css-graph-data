@@ -1,4 +1,4 @@
 export { useData, DataProvider } from './data/Data';
-export { default as Graph } from './graph/Graph';
+export { default as Segment } from './segment/Segment';
 
-export { Plots } from './plots';
+export { Graphs } from './graphs';

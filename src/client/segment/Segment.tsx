@@ -1,21 +1,21 @@
 import { ParentProps } from 'solid-js';
 import type { JSX } from 'solid-js';
 
-import styles from './graph.module.css';
+import styles from './segment.module.css';
 
-interface GraphType {
+interface SegmentType {
   title: string | JSX.Element;
   controls?: JSX.Element;
 }
 
-const Graph = ({ title, controls, children }: GraphType & ParentProps) => {
+const Segment = ({ title, controls, children }: SegmentType & ParentProps) => {
   return (
     <section class={styles.section}>
       <h1>{title}</h1>
       {controls && <aside class={styles.controls}>{controls}</aside>}
-      <div class={styles.plot}>{children}</div>
+      <div class={styles.graph}>{children}</div>
     </section>
   );
 };
 
-export default Graph;
+export default Segment;
