@@ -3,8 +3,8 @@ import { createSignal, createEffect, onCleanup } from 'solid-js';
 import * as Plot from '@observablehq/plot';
 
 import { plotOptions } from './plot-options';
-import { Segment, useData, useControls } from '..';
-
+import { Segment } from '..';
+import { useData, useControls } from '../providers';
 import { COLORS, DIM_SIZE } from '../../utils/globals';
 
 const Graph = () => {

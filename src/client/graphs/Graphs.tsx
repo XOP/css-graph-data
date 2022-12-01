@@ -1,7 +1,6 @@
 import { GraphSize, GraphSelectors, GraphDeclarations, GraphCommon } from '.';
 
-import { ControlsProvider } from '../controls/Controls';
-import { DataProvider } from '../data/Data';
+import { DataProvider, ControlsProvider } from '../providers';
 
 export default () => (
   <ControlsProvider>
