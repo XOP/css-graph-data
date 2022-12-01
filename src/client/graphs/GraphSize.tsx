@@ -3,12 +3,13 @@ import { createSignal, createEffect, onCleanup } from 'solid-js';
 import * as Plot from '@observablehq/plot';
 
 import { plotOptions } from './plot-options';
-import { Segment, useData } from '..';
+import { Segment, useData, useControls } from '..';
 
 import { COLORS, DIM_SIZE } from '../../utils/globals';
 
 const Graph = () => {
   const data = useData();
+  const { amount } = useControls();
 
   let plotRef;
 
@@ -17,8 +18,10 @@ const Graph = () => {
   createEffect(() => {
     if (data.loading) return;
 
+    const refinedData = data().slice(0, amount());
+
     const marks = [
-      Plot.dot(data(), {
+      Plot.dot(refinedData, {
         x: 'timestamp',
         y: plotSizeY(),
         fill: plotSizeY(),
@@ -27,7 +30,7 @@ const Graph = () => {
         stroke: COLORS.light,
       }),
       Plot.ruleY([0]),
-      Plot.linearRegressionY(data(), {
+      Plot.linearRegressionY(refinedData, {
         x: 'timestamp',
         y: plotSizeY(),
         stroke: COLORS.accent,

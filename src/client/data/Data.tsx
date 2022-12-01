@@ -22,7 +22,7 @@ const fetchData = async function () {
     };
   });
 
-  return dataSet.slice(0, 10);
+  return dataSet;
 };
 
 const DataContext = createContext<Resource<CssDataType[]>>(null);
@@ -34,4 +34,4 @@ export const DataProvider = (props) => {
   return <DataContext.Provider value={data} children={props.children} />;
 };
 
-export const useData = () => useContext(DataContext)
+export const useData = () => useContext(DataContext);
