@@ -1,20 +1,22 @@
 import { ParentProps } from 'solid-js';
 import type { JSX } from 'solid-js';
 
+import { Box } from '../';
+
 import styles from './segment.module.css';
 
-interface SegmentType {
+export interface ISegment {
   title: string | JSX.Element;
   controls?: JSX.Element;
 }
 
-const Segment = ({ title, controls, children }: SegmentType & ParentProps) => {
+const Segment = ({ title, controls, children }: ISegment & ParentProps) => {
   return (
-    <section class={styles.section}>
+    <Box classList={{[styles.section]: true}}>
       <h1>{title}</h1>
       {controls && <aside class={styles.controls}>{controls}</aside>}
       <div class={styles.graph}>{children}</div>
-    </section>
+    </Box>
   );
 };
 
