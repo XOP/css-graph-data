@@ -3,7 +3,7 @@ import { createSignal, createEffect, onCleanup } from 'solid-js';
 import * as Plot from '@observablehq/plot';
 
 import { plotOptions } from './plot-options';
-import { Segment } from '..';
+import { Segment } from '../atoms';
 import { useData, useControls } from '../providers';
 import { COLORS, DIM_SIZE } from '../../utils/globals';
 

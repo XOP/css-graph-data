@@ -1,0 +1,6 @@
+.box {
+  padding: var(--cgd-space-100);
+
+  border: 1px solid var(--cgd-color-primary-shade);
+  border-radius: var(--cgd-radius-regular);
+}
