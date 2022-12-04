@@ -2,6 +2,8 @@ import { createSignal, createUniqueId, onMount } from 'solid-js';
 
 import '@shoelace-style/shoelace/dist/components/range/range.js';
 
+import styles from './range.module.css';
+
 export interface IRange {
   min: number | string;
   max: number | string;
@@ -31,6 +33,7 @@ const Range = (props: IRange) => {
   return (
     <div class="sl-theme-dark">
       <sl-range
+        class={styles.range}
         id={id}
         ref={rangeRef}
         value={init}

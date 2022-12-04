@@ -1,0 +1,9 @@
+.range {
+  --thumb-size: var(--cgd-space-125);
+  --track-height: var(--cgd-space-025);
+  --track-color-active: var(--cgd-color-gamma-450);
+  --track-color-inactive: var(--cgd-color-gamma-150);
+
+  --sl-color-primary-600: var(--cgd-color-primary);
+  --sl-color-primary-500: var(--cgd-color-primary-tint);
+}

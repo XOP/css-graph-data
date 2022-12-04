@@ -1,0 +1,18 @@
+.controls {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--cgd-space-150);
+  align-items: center;
+
+  margin-bottom: var(--cgd-space-100);
+}
+
+.range {
+  flex: 1 1 auto;
+  align-items: center;
+}
+
+.choose {
+  flex: 0 1 auto;
+  align-items: center;
+}
