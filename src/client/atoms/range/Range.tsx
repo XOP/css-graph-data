@@ -1,4 +1,6 @@
-import { createSignal, createUniqueId } from 'solid-js';
+import { createSignal, createUniqueId, onMount } from 'solid-js';
+
+import '@shoelace-style/shoelace/dist/components/range/range.js';
 
 export interface IRange {
   min: number | string;
@@ -8,6 +10,8 @@ export interface IRange {
 }
 
 const Range = (props: IRange) => {
+  let rangeRef;
+
   const id = createUniqueId();
   const { min, max, init, onChange } = props;
 
@@ -20,19 +24,22 @@ const Range = (props: IRange) => {
     onChange(nextValue);
   };
 
+  onMount(() => {
+    rangeRef.addEventListener('sl-change', handleChange);
+  });
+
   return (
-    <form>
-      <label htmlFor={id}>{value()}</label>
-      <input
+    <div class="sl-theme-dark">
+      <sl-range
         id={id}
+        ref={rangeRef}
         value={init}
-        type="range"
         min={min}
         max={max}
         step={5}
-        onchange={handleChange}
-      />
-    </form>
+        label={`Data samples amount: ${value()}`}
+      ></sl-range>
+    </div>
   );
 };
 
