@@ -1,4 +1,10 @@
-.section > h1 {
+.header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+}
+
+.header > h1 {
   margin: 0;
 
   font-size: var(--cgd-font-size-l);

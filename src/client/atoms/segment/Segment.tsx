@@ -13,8 +13,10 @@ export interface ISegment {
 const Segment = ({ title, controls, children }: ISegment & ParentProps) => {
   return (
     <Box classList={{ [styles.section]: true }}>
-      <h1>{title}</h1>
-      {controls && <aside class={styles.controls}>{controls}</aside>}
+      <div class={styles.header}>
+        <h1>{title}</h1>
+        {controls && <aside class={styles.controls}>{controls}</aside>}
+      </div>
       <div class={styles.graph}>{children}</div>
     </Box>
   );

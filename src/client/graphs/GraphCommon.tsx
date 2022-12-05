@@ -3,17 +3,27 @@ import { createSignal, createEffect, onCleanup } from 'solid-js';
 import * as Plot from '@observablehq/plot';
 
 import { plotOptions } from './plot-options';
-import { Segment } from '../atoms';
+import { Choose, Segment } from '../atoms';
 import { useData, useControls } from '../providers';
-import { COLORS, DIM_COMMON_LINES } from '../../utils/globals';
 
-const Graph = () => {
+import {
+  COLORS,
+  DIM_COMMON_LINES,
+  DIM_COMMON_RULES,
+} from '../../utils/globals';
+
+const GraphCommon = () => {
   const data = useData();
   const { amount } = useControls();
 
   let plotRef;
 
   const [plotCommonY, setPlotCommonY] = createSignal(DIM_COMMON_LINES);
+
+  const commonValues = [
+    { value: DIM_COMMON_LINES, label: 'Lines' },
+    { value: DIM_COMMON_RULES, label: 'Rules' },
+  ];
 
   createEffect(() => {
     if (data.loading) return;
@@ -55,12 +65,18 @@ const Graph = () => {
     });
   });
 
-  return <div ref={plotRef}></div>;
-};
+  const Graph = () => <div ref={plotRef}></div>;
 
-const GraphCommon = () => {
+  const controls = (
+    <Choose
+      value={plotCommonY}
+      values={commonValues}
+      onChange={setPlotCommonY}
+    />
+  );
+
   return (
-    <Segment title="Common data">
+    <Segment title="Common data" controls={controls}>
       <Graph />
     </Segment>
   );

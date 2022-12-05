@@ -3,17 +3,22 @@ import { createSignal, createEffect, onCleanup } from 'solid-js';
 import * as Plot from '@observablehq/plot';
 
 import { plotOptions } from './plot-options';
-import { Segment } from '../atoms';
+import { Choose, Segment } from '../atoms';
 import { useData, useControls } from '../providers';
-import { COLORS, DIM_SIZE } from '../../utils/globals';
+import { COLORS, DIM_SIZE, DIM_SIZE_GZIP } from '../../utils/globals';
 
-const Graph = () => {
+const GraphSize = () => {
   const data = useData();
   const { amount } = useControls();
 
   let plotRef;
 
   const [plotSizeY, setPlotSizeY] = createSignal(DIM_SIZE);
+
+  const sizeValues = [
+    { value: DIM_SIZE, label: 'Regular' },
+    { value: DIM_SIZE_GZIP, label: 'Gzipped' },
+  ];
 
   createEffect(() => {
     if (data.loading) return;
@@ -40,7 +45,7 @@ const Graph = () => {
     const plot = Plot.plot({
       ...plotOptions,
       y: {
-        label: 'Size, kb',
+        label: 'Size, kB',
         domain: [0, plotSizeY() === DIM_SIZE ? 350 : 50],
       },
       marks,
@@ -54,12 +59,14 @@ const Graph = () => {
     });
   });
 
-  return <div ref={plotRef}></div>;
-};
+  const Graph = () => <div ref={plotRef}></div>;
 
-const GraphSize = () => {
+  const controls = (
+    <Choose value={plotSizeY} values={sizeValues} onChange={setPlotSizeY} />
+  );
+
   return (
-    <Segment title="CSS Size">
+    <Segment title="CSS Size" controls={controls}>
       <Graph />
     </Segment>
   );

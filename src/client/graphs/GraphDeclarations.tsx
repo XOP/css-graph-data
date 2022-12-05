@@ -3,11 +3,16 @@ import { createSignal, createEffect, onCleanup } from 'solid-js';
 import * as Plot from '@observablehq/plot';
 
 import { plotOptions } from './plot-options';
-import { Segment } from '../atoms';
+import { Choose, Segment } from '../atoms';
 import { useData, useControls } from '../providers';
-import { COLORS, DIM_DECL_AMOUNT } from '../../utils/globals';
 
-const Graph = () => {
+import {
+  COLORS,
+  DIM_DECL_AMOUNT,
+  DIM_DECL_COHESION,
+} from '../../utils/globals';
+
+const GraphDeclarations = () => {
   const data = useData();
   const { amount } = useControls();
 
@@ -15,6 +20,11 @@ const Graph = () => {
 
   const [plotDeclarationsY, setPlotDeclarationsY] =
     createSignal(DIM_DECL_AMOUNT);
+
+  const declarationsValues = [
+    { value: DIM_DECL_AMOUNT, label: 'Amount' },
+    { value: DIM_DECL_COHESION, label: 'Cohesion' },
+  ];
 
   createEffect(() => {
     if (data.loading) return;
@@ -57,12 +67,18 @@ const Graph = () => {
     });
   });
 
-  return <div ref={plotRef}></div>;
-};
+  const Graph = () => <div ref={plotRef}></div>;
 
-const GraphDeclarations = () => {
+  const controls = (
+    <Choose
+      value={plotDeclarationsY}
+      values={declarationsValues}
+      onChange={setPlotDeclarationsY}
+    />
+  );
+
   return (
-    <Segment title="Declarations data">
+    <Segment title="Declarations data" controls={controls}>
       <Graph />
     </Segment>
   );
