@@ -1,0 +1,13 @@
+.controls {
+  margin-bottom: var(--cgd-space-100);
+}
+
+.layout {
+  display: grid;
+  gap: var(--cgd-space-100);
+  grid-template-columns: 1fr;
+}
+
+.isGrid {
+  grid-template-columns: 1fr 1fr;
+}

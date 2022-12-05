@@ -12,7 +12,7 @@ export interface ISegment {
 
 const Segment = ({ title, controls, children }: ISegment & ParentProps) => {
   return (
-    <Box classList={{[styles.section]: true}}>
+    <Box classList={{ [styles.section]: true }}>
       <h1>{title}</h1>
       {controls && <aside class={styles.controls}>{controls}</aside>}
       <div class={styles.graph}>{children}</div>

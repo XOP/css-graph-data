@@ -27,6 +27,7 @@ const Controls = () => {
 
   const handleLayoutChange = (nextLayout) => {
     setIsGridValue(nextLayout);
+    setIsGrid(nextLayout);
   };
 
   return (

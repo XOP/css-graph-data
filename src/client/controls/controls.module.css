@@ -3,8 +3,6 @@
   flex-wrap: nowrap;
   gap: var(--cgd-space-150);
   align-items: center;
-
-  margin-bottom: var(--cgd-space-100);
 }
 
 .range {
