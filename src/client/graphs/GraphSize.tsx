@@ -1,6 +1,4 @@
-/** @jsxImportSource solid-js */
-
-import { createSignal, createEffect, onCleanup, Switch, Match } from 'solid-js';
+import { createSignal, createEffect, onCleanup } from 'solid-js';
 
 import * as Plot from '@observablehq/plot';
 
@@ -14,6 +12,8 @@ const GraphSize = () => {
   const data = useData();
   const { amount } = useControls();
 
+  const [isReady, setReady] = createSignal(false);
+
   let plotRef;
 
   const [plotSizeY, setPlotSizeY] = createSignal(DIM_SIZE);
@@ -25,6 +25,8 @@ const GraphSize = () => {
 
   createEffect(() => {
     if (data.loading) return;
+
+    setReady(true);
 
     const refinedData = data().slice(0, amount());
 
@@ -63,14 +65,9 @@ const GraphSize = () => {
   });
 
   const Graph = () => (
-    <Switch>
-      <Match when={data.loading}>
-        <GraphSkeleton />
-      </Match>
-      <Match when={data.state === 'ready'}>
-        <div ref={plotRef}></div>
-      </Match>
-    </Switch>
+    <GraphSkeleton isReady={isReady}>
+      <div ref={plotRef}></div>
+    </GraphSkeleton>
   );
 
   const controls = (
