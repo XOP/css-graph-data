@@ -1,0 +1,8 @@
+.skeleton {
+  composes: box from '../box/box.module.css';
+
+  width: 100%;
+  height: calc(var(--cgd-font-size-n) * 1.6);
+
+  background: rgba(var(--cgd-color-primary-rgb), 0.05);
+}

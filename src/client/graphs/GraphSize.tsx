@@ -1,8 +1,11 @@
-import { createSignal, createEffect, onCleanup } from 'solid-js';
+/** @jsxImportSource solid-js */
+
+import { createSignal, createEffect, onCleanup, Switch, Match } from 'solid-js';
 
 import * as Plot from '@observablehq/plot';
 
 import { plotOptions } from './plot-options';
+import GraphSkeleton from './GraphSkeleton';
 import { Choose, Segment } from '../atoms';
 import { useData, useControls } from '../providers';
 import { COLORS, DIM_SIZE, DIM_SIZE_GZIP } from '../../utils/globals';
@@ -59,7 +62,16 @@ const GraphSize = () => {
     });
   });
 
-  const Graph = () => <div ref={plotRef}></div>;
+  const Graph = () => (
+    <Switch>
+      <Match when={data.loading}>
+        <GraphSkeleton />
+      </Match>
+      <Match when={data.state === 'ready'}>
+        <div ref={plotRef}></div>
+      </Match>
+    </Switch>
+  );
 
   const controls = (
     <Choose value={plotSizeY} values={sizeValues} onChange={setPlotSizeY} />

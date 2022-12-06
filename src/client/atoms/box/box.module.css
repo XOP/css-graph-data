@@ -1,4 +1,5 @@
 .box {
+  box-sizing: border-box;
   padding: var(--cgd-space-100);
 
   border: 1px solid var(--cgd-color-primary-shade);

@@ -55,8 +55,13 @@ const generateData = async function generateData(data = []) {
   return data;
 };
 
+const delayOutput = (cb) =>
+  new Promise((resolve) => {
+    setTimeout(async () => resolve(await cb()), 500);
+  });
+
 export async function get({ params, request }) {
-  const res = await generateData();
+  const res = await delayOutput(generateData);
 
   return {
     body: JSON.stringify(res, null, 2),
