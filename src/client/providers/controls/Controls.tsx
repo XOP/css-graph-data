@@ -1,19 +1,40 @@
-import { Accessor, createContext, Setter, useContext } from 'solid-js';
+import { Accessor, createContext, createSignal, useContext } from 'solid-js';
 
-import { createSignal } from 'solid-js';
+import ls from '../../storage';
 
+const [storage, setStorage] = ls;
 export interface IControls {
   amount: Accessor<number>;
-  setAmount: Setter<number>;
+  setAmount: Function;
   isGrid: Accessor<boolean>;
-  setIsGrid: Setter<boolean>;
+  setIsGrid: Function;
 }
+
+const CONTROLS_KEYS = {
+  amount: 'amount',
+  isGrid: 'isGrid',
+};
 
 const ControlsContext = createContext<IControls>(null);
 
 export const ControlsProvider = (props) => {
-  const [amount, setAmount] = createSignal(100);
-  const [isGrid, setIsGrid] = createSignal(false);
+  const [amount, _setAmount] = createSignal(
+    +storage[CONTROLS_KEYS.amount] || 100
+  );
+
+  const [isGrid, _setIsGrid] = createSignal(
+    !!storage[CONTROLS_KEYS.isGrid] || false
+  );
+
+  const setAmount = (val: number) => {
+    _setAmount(val);
+    setStorage(CONTROLS_KEYS.amount, val.toString());
+  };
+
+  const setIsGrid = (val: boolean) => {
+    _setIsGrid(val);
+    setStorage(CONTROLS_KEYS.isGrid, val.toString());
+  };
 
   return (
     <ControlsContext.Provider

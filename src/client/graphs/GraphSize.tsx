@@ -6,7 +6,11 @@ import { plotOptions } from './plot-options';
 import GraphSkeleton from './GraphSkeleton';
 import { Choose, Segment } from '../atoms';
 import { useData, useControls } from '../providers';
+import ls from '../storage';
 import { COLORS, DIM_SIZE, DIM_SIZE_GZIP } from '../../utils/globals';
+
+const [storage, setStorage] = ls;
+const plotKey = 'plotSizeVariant';
 
 const GraphSize = () => {
   const data = useData();
@@ -16,7 +20,7 @@ const GraphSize = () => {
 
   let plotRef;
 
-  const [plotSizeY, setPlotSizeY] = createSignal(DIM_SIZE);
+  const [plotSizeY, setPlotSizeY] = createSignal(storage[plotKey] || DIM_SIZE);
 
   const sizeValues = [
     { value: DIM_SIZE, label: 'Regular' },
@@ -70,8 +74,13 @@ const GraphSize = () => {
     </GraphSkeleton>
   );
 
+  const onControlChange = (val) => {
+    setPlotSizeY(val);
+    setStorage(plotKey, val);
+  };
+
   const controls = (
-    <Choose value={plotSizeY} values={sizeValues} onChange={setPlotSizeY} />
+    <Choose value={plotSizeY} values={sizeValues} onChange={onControlChange} />
   );
 
   return (

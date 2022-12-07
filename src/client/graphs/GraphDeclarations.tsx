@@ -6,11 +6,16 @@ import { plotOptions } from './plot-options';
 import { Choose, Segment } from '../atoms';
 import { useData, useControls } from '../providers';
 
+import ls from '../storage';
+
 import {
   COLORS,
   DIM_DECL_AMOUNT,
   DIM_DECL_COHESION,
 } from '../../utils/globals';
+
+const [storage, setStorage] = ls;
+const plotKey = 'plotDeclarationsVariant';
 
 const GraphDeclarations = () => {
   const data = useData();
@@ -19,7 +24,7 @@ const GraphDeclarations = () => {
   let plotRef;
 
   const [plotDeclarationsY, setPlotDeclarationsY] =
-    createSignal(DIM_DECL_AMOUNT);
+    createSignal(storage[plotKey] || DIM_DECL_AMOUNT);
 
   const declarationsValues = [
     { value: DIM_DECL_AMOUNT, label: 'Amount' },
@@ -69,11 +74,16 @@ const GraphDeclarations = () => {
 
   const Graph = () => <div ref={plotRef}></div>;
 
+  const onControlChange = (val) => {
+    setPlotDeclarationsY(val);
+    setStorage(plotKey, val);
+  }
+
   const controls = (
     <Choose
       value={plotDeclarationsY}
       values={declarationsValues}
-      onChange={setPlotDeclarationsY}
+      onChange={onControlChange}
     />
   );
 

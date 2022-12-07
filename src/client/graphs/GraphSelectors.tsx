@@ -5,6 +5,7 @@ import * as Plot from '@observablehq/plot';
 import { plotOptions } from './plot-options';
 import { Choose, Segment } from '../atoms';
 import { useData, useControls } from '../providers';
+import ls from '../storage';
 
 import {
   COLORS,
@@ -12,13 +13,18 @@ import {
   DIM_SELECTORS_SUM,
 } from '../../utils/globals';
 
+const [storage, setStorage] = ls;
+const plotKey = 'plotSelectorsVariant';
+
 const GraphSelectors = () => {
   const data = useData();
   const { amount } = useControls();
 
   let plotRef;
 
-  const [plotSelectorsY, setPlotSelectorsY] = createSignal(DIM_SELECTORS_AVG);
+  const [plotSelectorsY, setPlotSelectorsY] = createSignal(
+    storage[plotKey] || DIM_SELECTORS_AVG
+  );
 
   const selectorsValues = [
     { value: DIM_SELECTORS_AVG, label: 'Average' },
@@ -66,11 +72,16 @@ const GraphSelectors = () => {
 
   const Graph = () => <div ref={plotRef}></div>;
 
+  const onControlChange = (val) => {
+    setPlotSelectorsY(val);
+    setStorage(plotKey, val);
+  };
+
   const controls = (
     <Choose
       value={plotSelectorsY}
       values={selectorsValues}
-      onChange={setPlotSelectorsY}
+      onChange={onControlChange}
     />
   );
 

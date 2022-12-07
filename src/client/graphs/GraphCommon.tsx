@@ -5,6 +5,7 @@ import * as Plot from '@observablehq/plot';
 import { plotOptions } from './plot-options';
 import { Choose, Segment } from '../atoms';
 import { useData, useControls } from '../providers';
+import ls from '../storage';
 
 import {
   COLORS,
@@ -12,13 +13,18 @@ import {
   DIM_COMMON_RULES,
 } from '../../utils/globals';
 
+const [storage, setStorage] = ls;
+const plotKey = 'plotCommonVariant';
+
 const GraphCommon = () => {
   const data = useData();
   const { amount } = useControls();
 
   let plotRef;
 
-  const [plotCommonY, setPlotCommonY] = createSignal(DIM_COMMON_LINES);
+  const [plotCommonY, setPlotCommonY] = createSignal(
+    storage[plotKey] || DIM_COMMON_LINES
+  );
 
   const commonValues = [
     { value: DIM_COMMON_LINES, label: 'Lines' },
@@ -67,11 +73,16 @@ const GraphCommon = () => {
 
   const Graph = () => <div ref={plotRef}></div>;
 
+  const onControlChange = (val) => {
+    setPlotCommonY(val);
+    setStorage(plotKey, val);
+  };
+
   const controls = (
     <Choose
       value={plotCommonY}
       values={commonValues}
-      onChange={setPlotCommonY}
+      onChange={onControlChange}
     />
   );
 

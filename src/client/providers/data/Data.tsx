@@ -1,9 +1,14 @@
-import { createContext, Resource, useContext } from 'solid-js';
+import {
+  createContext,
+  createSignal,
+  createResource,
+  Resource,
+  useContext,
+} from 'solid-js';
 
-import { createSignal, createResource } from 'solid-js';
 import { matchSorter } from 'match-sorter';
 
-import { CssDataType } from '../../pages/data.json';
+import { CssDataType } from '../../../pages/data.json';
 
 const fetchData = async function () {
   const res = await fetch('/data.json');

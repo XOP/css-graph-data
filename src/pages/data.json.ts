@@ -57,7 +57,7 @@ const generateData = async function generateData(data = []) {
 
 const delayOutput = (cb) =>
   new Promise((resolve) => {
-    setTimeout(async () => resolve(await cb()), 500);
+    setTimeout(async () => resolve(await cb()), 350);
   });
 
 export async function get({ params, request }) {
