@@ -3,6 +3,7 @@ import { createSignal, createEffect, onCleanup } from 'solid-js';
 import * as Plot from '@observablehq/plot';
 
 import { plotOptions } from './plot-options';
+import GraphSkeleton from './GraphSkeleton';
 import { Choose, Segment } from '../atoms';
 import { useData, useControls } from '../providers';
 
@@ -21,6 +22,8 @@ const GraphDeclarations = () => {
   const data = useData();
   const { amount } = useControls();
 
+  const [isReady, setReady] = createSignal(false);
+
   let plotRef;
 
   const [plotDeclarationsY, setPlotDeclarationsY] =
@@ -33,6 +36,8 @@ const GraphDeclarations = () => {
 
   createEffect(() => {
     if (data.loading) return;
+
+    setReady(true);
 
     const refinedData = data().slice(0, amount());
 
@@ -72,7 +77,11 @@ const GraphDeclarations = () => {
     });
   });
 
-  const Graph = () => <div ref={plotRef}></div>;
+  const Graph = () => (
+    <GraphSkeleton isReady={isReady}>
+      <div ref={plotRef}></div>
+    </GraphSkeleton>
+  );
 
   const onControlChange = (val) => {
     setPlotDeclarationsY(val);

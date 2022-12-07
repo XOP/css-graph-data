@@ -1,8 +1,36 @@
 .skeleton {
   composes: box from '../box/box.module.css';
 
+  position: relative;
+  overflow: hidden;
+
   width: 100%;
   height: calc(var(--cgd-font-size-n) * 1.6);
 
   background: rgba(var(--cgd-color-primary-rgb), 0.05);
+}
+
+.skeleton::after {
+  display: block;
+  content: '';
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  transform: translateX(-100%);
+  background: linear-gradient(
+    -75deg,
+    transparent 25%,
+    rgba(var(--cgd-color-primary-rgb), 0.1),
+    transparent 75%
+  );
+
+  animation: loading 1s infinite;
+}
+
+@keyframes loading {
+  100% {
+    transform: translateX(100%);
+  }
 }

@@ -1,8 +1,9 @@
+import { createRoot } from "solid-js";
 import { createLocalStorage } from '@solid-primitives/storage';
 
-const storage = createLocalStorage({
+const storage = () => createLocalStorage({
   api: localStorage,
   prefix: 'cgd',
 });
 
-export default storage;
+export default createRoot(storage);

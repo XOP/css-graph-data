@@ -1,6 +1,6 @@
 .skeleton {
   width: 100%;
-  
+
   padding: 0;
-  padding-bottom: 55.55%;
+  padding-bottom: calc(55.55% - 2px);
 }

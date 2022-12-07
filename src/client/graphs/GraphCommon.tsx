@@ -3,6 +3,7 @@ import { createSignal, createEffect, onCleanup } from 'solid-js';
 import * as Plot from '@observablehq/plot';
 
 import { plotOptions } from './plot-options';
+import GraphSkeleton from './GraphSkeleton';
 import { Choose, Segment } from '../atoms';
 import { useData, useControls } from '../providers';
 import ls from '../storage';
@@ -20,6 +21,8 @@ const GraphCommon = () => {
   const data = useData();
   const { amount } = useControls();
 
+  const [isReady, setReady] = createSignal(false);
+
   let plotRef;
 
   const [plotCommonY, setPlotCommonY] = createSignal(
@@ -33,6 +36,8 @@ const GraphCommon = () => {
 
   createEffect(() => {
     if (data.loading) return;
+
+    setReady(true);
 
     const refinedData = data().slice(0, amount());
 
@@ -71,7 +76,11 @@ const GraphCommon = () => {
     });
   });
 
-  const Graph = () => <div ref={plotRef}></div>;
+  const Graph = () => (
+    <GraphSkeleton isReady={isReady}>
+      <div ref={plotRef}></div>
+    </GraphSkeleton>
+  );
 
   const onControlChange = (val) => {
     setPlotCommonY(val);
