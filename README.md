@@ -1,5 +1,7 @@
 # CSS data analysis and visualization
 
+See [vercel](https://vercel.com/) deployment [here](https://css-graph-data.vercel.app/).
+
 ![CSS data analysis logo](https://res.cloudinary.com/wdybih/image/upload/v1670501042/favicons/android-chrome-512x512_hqg3ls.png)
 
 CSS data analysis showcase project.  
@@ -14,6 +16,7 @@ so as the artificial delay for data fetching.
 - [SolidJS](https://www.solidjs.com/)
 - [CSS analyzer](https://github.com/projectwallace/css-analyzer)
 - [Observable Plot](https://observablehq.com/@observablehq/plot)
+
 ## Extra resources
 
 - [Google Fonts](https://fonts.google.com/)
