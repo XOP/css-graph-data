@@ -1,9 +1,3 @@
-.section {
-  max-width: calc(900px + var(--cgd-side-gap) * 2);
-  margin: 0 auto;
-  width: 100%;
-}
-
 .header {
   display: grid;
   grid-template-columns: 1fr auto;

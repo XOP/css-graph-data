@@ -39,4 +39,17 @@ const { title } = Astro.props;
     font-size: var(--cgd-font-size-xl);
     font-weight: bold;
   }
+
+  .section :global(h2) {
+    margin-bottom: var(--cgd-space-050);
+
+    font-size: var(--cgd-font-size-l);
+    font-weight: bold;
+    color: var(--cgd-color-primary-tone);
+  }
+
+  .section :global(p) {
+    margin-top: var(--cgd-space-050);
+    margin-bottom: var(--cgd-space-150);
+  }
 </style>

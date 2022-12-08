@@ -1,14 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Content from '../components/Content.astro';
+
+import { Content as About } from './md/about.md';
 ---
 
 <Layout title="About">
   <Content title="About">
-    <p>
-      <b>CSS data analysis</b> is a small hackathon research project, studying and
-      visualizing CSS data from multiple library releases throughout almost 3
-      years.
-    </p>
+    <About />
   </Content>
 </Layout>
