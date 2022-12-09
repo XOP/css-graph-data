@@ -2,7 +2,7 @@
 
 See [vercel](https://vercel.com/) deployment [here](https://css-graph-data.vercel.app/).
 
-![CSS data analysis logo](https://res.cloudinary.com/wdybih/image/upload/v1670501042/favicons/android-chrome-512x512_hqg3ls.png)
+![CSS data analysis logo](https://res.cloudinary.com/wdybih/image/upload/v1670594558/favicons/android-chrome-192x192_eewciq.png)
 
 CSS data analysis showcase project.  
 See ["About"](/src/pages/md/about.md) page for details.
