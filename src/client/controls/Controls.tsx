@@ -36,7 +36,7 @@ const Controls = () => {
         <Range
           init={amountValue()}
           min={5}
-          max={200}
+          max={210}
           onChange={handleAmountChange}
         />
       </div>
